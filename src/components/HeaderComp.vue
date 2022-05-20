@@ -2,11 +2,11 @@
   
   <header>
     
-    <div class="container ">
+    <div class="container-fluid ">
       <div class="row row-cols-12 box-head">
 
         <div class="col left">
-          <img src="https://fontmeme.com/temporary/a331d05bc7cb82d3b407246dfc38ca56.png" alt="">
+          <img src="../assets/img/boolflix.png" alt="">
         </div>
 
         <div class="col right">
@@ -36,7 +36,22 @@ export default {
 
 .box-head{
   padding-top: 20px;
+  .left{
+    img{
+      width: 130px;
+      margin-left: 20px;
+    }  
+  }
 
+  .right{
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+
+    input{
+      width: 500px;  
+    }
+  }
 }
 
 </style>

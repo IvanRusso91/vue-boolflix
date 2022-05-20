@@ -1,18 +1,22 @@
 <template>
   <div class="sfondo">
-    
+    <HeaderComp />
+
     <MainComp />
 
   </div>
 </template>
 
 <script>
+
+import HeaderComp from './components/HeaderComp';
 import MainComp from './components/MainComp'
 import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
+    HeaderComp,
     MainComp,
   },
 
