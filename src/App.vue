@@ -2,7 +2,7 @@
   <div class="sfondo">
 
     <HeaderComp @movieSoarch = "selectMovie" />
-
+  
     <MainComp :films ="films"/>
 
   </div>
@@ -67,7 +67,7 @@ export default {
 @import './assets/style/general';
 
 .sfondo{
-  height: 100vh;
+  height: 400vh;
   background-image: linear-gradient(to bottom,
  rgb(0, 0, 0),rgb(46, 46, 46));
 }
