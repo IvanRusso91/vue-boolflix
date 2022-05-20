@@ -1,8 +1,9 @@
 <template>
   <div class="sfondo">
-    <HeaderComp />
 
-    <MainComp />
+    <HeaderComp @movieSoarch = "selectMovie" />
+
+    <MainComp :films ="films"/>
 
   </div>
 </template>
@@ -23,11 +24,12 @@ export default {
    data(){
     return{
       apiUrl:'https://api.themoviedb.org/3/search/movie',
+      films:[],
 
       apiParams:{
         api_key: '7c69e1dbf94c017daf99d092e85dc183',
         language: 'it_IT',
-        query: 'ritorno al futuro',
+        query: '',
       }
       
     }
@@ -40,15 +42,22 @@ export default {
       })
       .then(res => {
         console.log(res.data);
+        this.films = res.data.results;
       })
       .catch(err =>{
         console.log(err);
       })
     },
+
+    selectMovie(search){
+      this.apiParams.query = search;
+      this.getApi();
+      console.log(search);
+    }
   },
 
   mounted(){
-    this.getApi();
+  
   }
 }
  

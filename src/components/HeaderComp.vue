@@ -10,7 +10,12 @@
         </div>
 
         <div class="col right">
-          <input class="form-control" type="text" placeholder="Cerca...">
+
+          <input  v-model.trim= "search"
+                  @keyup.enter= "$emit( 'movieSoarch', search )"
+                  class="form-control" 
+                  type="text" 
+                  placeholder="Cerca..." >
         </div>
 
       </div>
@@ -24,8 +29,11 @@
 <script>
 export default {
   name:'HeaderComp',
-  props:{
 
+  data(){
+    return{
+      search:'',
+    }
   },
   
 }
