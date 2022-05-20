@@ -3,12 +3,19 @@
 
     <div  class="card" 
           v-for="(film, index) in films" :key="`film${index}`">
-
-      <h4>{{film.original_title}}</h4>
-      <p> Data di uscita: {{film.release_date}}</p>
-      <p> Language: {{film.original_language}} </p>
-      <p class="sinos"> Sinossi: {{film.overview}}</p>
-
+      <h4>{{film.original_title}}</h4>     
+      <p>
+        <strong>Data di uscita:</strong> {{film.release_date}}
+      </p>
+      <p>
+        <strong>Language:</strong> {{film.original_language}}
+      </p>
+      <p class="sinos">
+        <strong>Sinossi:</strong>
+        {{film.overview}}
+      </p>
+      
+      
     </div>
     
     
@@ -32,21 +39,33 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   .card{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     width: 300px;
-    height: 500px;
+    height: 400px;
     margin: 80px 20px -30px 0px;
-    padding: 10px;
-
-    .sinos{
-      text-align: left;
+    padding: 15px;
+    overflow-x: hidden;
+    overflow-x: scroll;
+    &::-webkit-scrollbar{
+      display: none;
     
     }
+    
+    h4{
+      padding-bottom: 10px;
+    }
 
+    .sinos{
+      position: absolute;
+      text-align: left;
+      padding-top: 10px;
+      margin-top: 150px;
+      
+    } 
   }
-
 }
 
 
