@@ -3,6 +3,8 @@
 
     <div  class="card" 
           v-for="(film, index) in films" :key="`film${index}`">
+
+      <img :src="`https://image.tmdb.org/t/p/w300/${film.poster_path}`">    
       <h4>{{film.original_title}}</h4>     
       <p>
         <strong>Data di uscita:</strong> {{film.release_date}}
@@ -25,6 +27,8 @@
     
     <div  class="card" 
           v-for="(serie, index) in tv" :key="`serie${index}`">
+
+      <img :src="`https://image.tmdb.org/t/p/w300/${serie.poster_path}`">    
       <h4>{{serie.original_name}}</h4>     
       <p>
         <strong>Data di uscita:</strong> {{serie.first_air_date}}
