@@ -8,7 +8,10 @@
         <strong>Data di uscita:</strong> {{film.release_date}}
       </p>
       <p>
-        <strong>Language:</strong> {{film.original_language}}
+        <strong>Language:</strong> <img :src = toUpper(film)>  
+      </p>
+      <p class="vote">
+        {{film.vote_average}}
       </p>
       <p class="sinos">
         <strong>Sinossi:</strong>
@@ -29,8 +32,22 @@ export default {
 
   props:{
     films: Array,
-  }
-}
+  },
+  methods:{
+    toUpper(film){
+      let iD = film.original_language;
+
+      if(iD === 'en'){
+        iD = "gb" 
+      }else if( iD === 'ja'){
+        iD = "jp"
+      }
+      let imgSrc = "https://www.countryflagicons.com/SHINY/32/"+ iD.toUpperCase() + ".png";
+      return imgSrc;
+      
+    }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -57,11 +74,10 @@ export default {
     h4{
       padding-bottom: 10px;
     }
-
     .sinos{
       position: absolute;
       text-align: left;
-      padding-top: 10px;
+      padding-top: 50px;
       margin-top: 150px;
       
     } 

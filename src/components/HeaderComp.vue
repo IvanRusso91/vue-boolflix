@@ -12,7 +12,7 @@
         <div class="col right">
 
           <input  v-model.trim= "search"
-                  @keyup.enter= "$emit( 'movieSoarch', search )"
+                  @keyup.enter= "movieSoarch"
                   class="form-control" 
                   type="text" 
                   placeholder="Cerca..." >
@@ -35,7 +35,13 @@ export default {
       search:'',
     }
   },
-  
+  methods:{
+    movieSoarch(){
+      this.$emit('movieSoarch', this.search);
+      this.search='';
+
+    }
+  }
 }
 
 </script>
