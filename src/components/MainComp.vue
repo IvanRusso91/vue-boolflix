@@ -21,6 +21,7 @@
       
     </div>
     
+    <!-- Card Tv -->
     
 
   </div>
@@ -29,14 +30,12 @@
 <script>
 export default {
   name:'MainComp',
-
   props:{
     films: Array,
   },
   methods:{
     toUpper(film){
       let iD = film.original_language;
-
       if(iD === 'en'){
         iD = "gb" 
       }else if( iD === 'ja'){
@@ -51,7 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .ir-box{
   flex-wrap: wrap;
   justify-content: center;
@@ -83,6 +81,4 @@ export default {
     } 
   }
 }
-
-
 </style>

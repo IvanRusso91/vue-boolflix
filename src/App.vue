@@ -1,7 +1,7 @@
 <template>
   <div class="sfondo">
 
-    <HeaderComp @movieSoarch = "selectMovie" />
+    <HeaderComp @movieSoarch = "selectMovie"/>
   
     <MainComp :films ="films"/>
 
@@ -9,21 +9,20 @@
 </template>
 
 <script>
-
 import HeaderComp from './components/HeaderComp';
 import MainComp from './components/MainComp'
 import axios from 'axios';
-
 export default {
   name: 'App',
   components: {
     HeaderComp,
     MainComp,
   },
-
    data(){
     return{
-      apiUrl:'https://api.themoviedb.org/3/search/movie',
+      apiUrlMovie:'https://api.themoviedb.org/3/search/movie',
+      apiUrlTv:'https://api.themoviedb.org/3/search/tv',
+      tv: [],
       films:[],
 
       apiParams:{
@@ -36,8 +35,11 @@ export default {
   },
   
   methods:{
-    getApi(){
-      axios.get(this.apiUrl,{
+
+    // ----- film -----
+
+    getApiMovie(){
+      axios.get(this.apiUrlMovie,{
         params: this.apiParams
       })
       .then(res => {
@@ -48,14 +50,30 @@ export default {
         console.log(err);
       })
     },
-
     selectMovie(search){
       this.apiParams.query = search;
-      this.getApi();
+      this.getApiMovie();
+      this.getApiTv()
       console.log(search);
-    }
-  },
+    },
 
+    // ------ Serie Tv -------
+    
+    getApiTv(){
+      axios.get(this.apiUrlTv,{
+        params: this.apiParams
+      })
+      .then(res => {
+        console.log(res.data);
+        this.tv = res.data.results;
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+    },
+
+
+  },
   mounted(){
   
   }
@@ -65,11 +83,9 @@ export default {
 
 <style lang="scss">
 @import './assets/style/general';
-
 .sfondo{
   height: 400vh;
   background-image: linear-gradient(to bottom,
  rgb(0, 0, 0),rgb(46, 46, 46));
 }
-
 </style>

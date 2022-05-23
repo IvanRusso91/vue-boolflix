@@ -29,7 +29,6 @@
 <script>
 export default {
   name:'HeaderComp',
-
   data(){
     return{
       search:'',
@@ -39,15 +38,12 @@ export default {
     movieSoarch(){
       this.$emit('movieSoarch', this.search);
       this.search='';
-
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
-
 .box-head{
   padding-top: 20px;
   .left{
@@ -56,16 +52,13 @@ export default {
       margin-left: 20px;
     }  
   }
-
   .right{
     display: flex;
     justify-content: end;
     margin-right: 20px;
-
     input{
       width: 500px;  
     }
   }
 }
-
 </style>
