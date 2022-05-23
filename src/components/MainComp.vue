@@ -23,6 +23,27 @@
     
     <!-- Card Tv -->
     
+    <div  class="card" 
+          v-for="(serie, index) in tv" :key="`serie${index}`">
+      <h4>{{serie.original_name}}</h4>     
+      <p>
+        <strong>Data di uscita:</strong> {{serie.first_air_date}}
+      </p>
+      <p>
+        <strong>Language:</strong> <img :src = toUpper(serie)>  
+      </p>
+      <p class="vote">
+        {{serie.vote_average}}
+      </p>
+      <p class="sinos">
+        <strong>Sinossi:</strong>
+        {{serie.overview}}
+      </p>
+      
+      
+    </div>
+
+
 
   </div>
 </template>
@@ -32,10 +53,13 @@ export default {
   name:'MainComp',
   props:{
     films: Array,
+    tv: Array,
   },
+
   methods:{
-    toUpper(film){
-      let iD = film.original_language;
+
+    toUpper(item){
+      let iD = item.original_language;
       if(iD === 'en'){
         iD = "gb" 
       }else if( iD === 'ja'){
@@ -44,7 +68,9 @@ export default {
       let imgSrc = "https://www.countryflagicons.com/SHINY/32/"+ iD.toUpperCase() + ".png";
       return imgSrc;
       
-    }
+    },
+
+
   },
 };
 </script>

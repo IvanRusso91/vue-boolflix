@@ -3,7 +3,7 @@
 
     <HeaderComp @movieSoarch = "selectMovie"/>
   
-    <MainComp :films ="films"/>
+    <MainComp :films ="films" :tv = "tv"/>
 
   </div>
 </template>
