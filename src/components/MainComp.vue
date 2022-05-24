@@ -7,8 +7,6 @@
  
   <div class="container ir-box d-flex flex-wrapping">
 
-    
-
     <div  class="ir-cards flip-card" 
           v-for="(film, index) in films" :key="`film${index}`">
 
@@ -48,34 +46,39 @@
   </div>
 
   <div class="container ir-box d-flex flex-wrapping">
-    <div  class="card" 
+
+    <div  class="ir-cards flip-card" 
           v-for="(serie, index) in tv" :key="`serie${index}`">
 
-      <!-- <img :src="`https://image.tmdb.org/t/p/w300/${serie.poster_path}`">     -->
-      <h4>{{serie.original_name}}</h4>     
-      <p>
-        <strong>Data di uscita:</strong> {{serie.first_air_date}}
-      </p>
-      <p>
-        <strong>Language:</strong> <img :src = toUpper(serie)>  
-      </p>
-      <p  class="vote">
+      <div class="flip-card-inner">    
+        <div class="flip-card-front">
+          <img class="locandina" :src="`https://image.tmdb.org/t/p/w300/${serie.poster_path}`">
+        </div>
 
-        <i v-for="(i, index) in votoPieno(serie)" :key="`i${index}`" class="fa-solid fa-star"></i>
+        <div class="flip-card-back">
+          <h4>{{serie.original_name}}</h4>     
+          <p>
+            <strong>Data di uscita:</strong> {{serie.first_air_date}}
+          </p>
+          <p>
+            <strong>Language:</strong> <img :src = toUpper(serie)>  
+          </p>
+          <p class="vote">
+            
+            <i v-for="(i, index) in votoPieno(serie)" :key="`d${index}`" class="fa-solid fa-star"></i>
 
-        <i v-for="(i, index) in votoVuoto(serie)" :key="`b${index}`" class="fa-regular fa-star"></i>
+            <i v-for="(i, index) in votoVuoto(serie)" :key="`e${index}`" class="fa-regular fa-star"></i>
 
-      </p>
-      <p class="sinos">
-        <strong>Sinossi:</strong>
-        {{serie.overview}}
-      </p>
+          </p>
+          <p class="sinos">
+            <strong>Sinossi:</strong>
+            {{serie.overview}}
+          </p>
+        </div>  
       
-      
+      </div>    
     </div>
-  </div>
-
-
+  </div> 
   
 </main>  
 </template>
@@ -153,15 +156,15 @@ export default {
     }
 
     .locandina{
-      width: 100%;
+      width:300px;
+      height: 450px;
     }
     .flip-card-inner{
-      position: absolute;
+      position: relative;
       text-align: center;
       transition: transform 0.6s;
       transform-style: preserve-3d;
-      
-      
+      background-color: rgb(29, 51, 70);
       
       &:hover{
         transform: rotateY(180deg);
@@ -171,14 +174,12 @@ export default {
         width: 100%;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        
-      
+         
         .flip-card-back{
           position: absolute;
           -webkit-backface-visibility: hidden;
           backface-visibility: hidden; 
           transform: rotateY(180deg);
-         
         }
       }
     }
@@ -189,15 +190,21 @@ export default {
     text-align: center;
     margin: 80px 20px -60px 0px;
     padding: 15px;
-   
-    
+    color: white;
+     
     h4{
-      padding-bottom: 10px;
+      padding: 10px;
+    }
+
+    .vote .fa-solid{
+      color: yellow;
     }
     .sinos{
       text-align: left;
-      height: 250px;
+      height: 190px;
       overflow-x: hidden;
+      padding: 10px;
+
       &::-webkit-scrollbar {
         width: 5px;  
       }
