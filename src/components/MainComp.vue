@@ -1,6 +1,17 @@
 <template>
 <main>
 
+  <div class="container-fluid position-relative jumbo" >
+    <img :src="`https://image.tmdb.org/t/p/w500/${jumbo[counter].poster_path}`">
+    <div class="text-jumbo">
+      <h4>{{jumbo[counter].original_title}}</h4>
+      <p class="sinos-jumbo">
+        <strong>Sinossi:</strong>
+        {{jumbo[counter].overview}}
+      </p>
+    </div>
+  </div>
+
   <!-- Card film -->
 
   <div class="box-title">
@@ -96,9 +107,16 @@
 <script>
 export default {
   name:'MainComp',
+  data(){
+    return{
+      counter: 0,
+    }
+  },
+
   props:{
     films: Array,
     tv: Array,
+    jumbo: Array,
     titoloCards: String,
     serieCards: String,
   },
@@ -135,11 +153,45 @@ export default {
       return stelleVuota;
     },
     
+    next(){
+      this.counter++;
+      if(this.counter > this.jumbo.length - 1){
+        this.counter = 0;
+      }  
+    },
   },
+
+  mounted(){
+    setInterval(() =>{
+      this.next();
+    }, 4000)
+    }
 };
 </script>
 
 <style lang="scss" scoped>
+
+.jumbo{
+  margin-top: 100px;
+  height:700px;
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  .text-jumbo{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    margin-top: 430px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 20px;
+    padding: 10px;
+    .sinos-jumbo{
+      width: 400px;
+      overflow-x: hidden;
+    }
+  }
+
+}
 
 .box-title{
     margin: 30px 0px 0px 0px;
@@ -147,7 +199,6 @@ export default {
     h1{
       color: white;
       padding: 20px;
-      margin-top: 80px;
       margin-left: 20px;
     }
     hr{

@@ -8,7 +8,12 @@
         <img src="./assets/img/load-boolflix.png">
       </div>
 
-    <MainComp v-else :films ="movie" :tv = "tv" titoloCards='Film' serieCards="Serie Tv" />
+    <MainComp v-else
+              :films ="movie" 
+              :jumbo ="movie"
+              :tv = "tv" 
+              titoloCards='Film' 
+              serieCards="Serie Tv" />
     
   </div>
 </template>
