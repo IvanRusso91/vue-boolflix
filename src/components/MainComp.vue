@@ -1,33 +1,53 @@
 <template>
+<main>
+  <div class="box-title">
+    <h2>Film</h2>
+    <hr>
+  </div>
+ 
   <div class="container ir-box d-flex flex-wrapping">
 
-    <div  class="card" 
+    
+
+    <div  class="ir-cards flip-card" 
           v-for="(film, index) in films" :key="`film${index}`">
 
-      <!-- <img :src="`https://image.tmdb.org/t/p/w300/${film.poster_path}`">     -->
-      <h4>{{film.original_title}}</h4>     
-      <p>
-        <strong>Data di uscita:</strong> {{film.release_date}}
-      </p>
-      <p>
-        <strong>Language:</strong> <img :src = toUpper(film)>  
-      </p>
-      <p class="vote">
-        
-        <i v-for="(i, index) in votoPieno(film)" :key="`a${index}`" class="fa-solid fa-star"></i>
+      <div class="flip-card-inner">    
+        <div class="flip-card-front">
+          <img class="locandina" :src="`https://image.tmdb.org/t/p/w300/${film.poster_path}`">
+        </div>
 
-        <i v-for="(i, index) in votoVuoto(film)" :key="`c${index}`" class="fa-regular fa-star"></i>
-      </p>
-      <p class="sinos">
-        <strong>Sinossi:</strong>
-        {{film.overview}}
-      </p>
+        <div class="flip-card-back">
+          <h4>{{film.original_title}}</h4>     
+          <p>
+            <strong>Data di uscita:</strong> {{film.release_date}}
+          </p>
+          <p>
+            <strong>Language:</strong> <img :src = toUpper(film)>  
+          </p>
+          <p class="vote">
+            
+            <i v-for="(i, index) in votoPieno(film)" :key="`a${index}`" class="fa-solid fa-star"></i>
+
+            <i v-for="(i, index) in votoVuoto(film)" :key="`c${index}`" class="fa-regular fa-star"></i>
+          </p>
+          <p class="sinos">
+            <strong>Sinossi:</strong>
+            {{film.overview}}
+          </p>
+        </div>  
       
-      
+      </div>    
     </div>
-    
+  </div> 
     <!-- Card Tv -->
-    
+
+  <div class="box-title">
+    <h2> Serie TV</h2>
+    <hr>
+  </div>
+
+  <div class="container ir-box d-flex flex-wrapping">
     <div  class="card" 
           v-for="(serie, index) in tv" :key="`serie${index}`">
 
@@ -53,10 +73,11 @@
       
       
     </div>
-
-
-
   </div>
+
+
+  
+</main>  
 </template>
 
 <script>
@@ -103,34 +124,91 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.box-title{
+    margin: 30px 0px 30px 0px;
+
+    h2{
+      text-align: center;
+      color: white;
+      padding: 50px;
+    }
+    hr{
+      color: white;
+    }
+  }
+
 .ir-box{
   flex-wrap: wrap;
   justify-content: center;
-  .card{
-    position: relative;
+  
+  .flip-card{
+    background-color: transparent;
+    width: 300px;
+    height: 450px;
+    perspective: 1000px;
+
+    &:hover{
+      transform: rotateY(180deg);
+    }
+
+    .locandina{
+      width: 100%;
+    }
+    .flip-card-inner{
+      position: absolute;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      
+      
+      
+      &:hover{
+        transform: rotateY(180deg);
+      }
+      .flip-card-front{
+        position: absolute;
+        width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        
+      
+        .flip-card-back{
+          position: absolute;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; 
+          transform: rotateY(180deg);
+         
+        }
+      }
+    }
+  }
+  .ir-cards{
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    width: 300px;
-    height: 400px;
-    margin: 80px 20px -30px 0px;
+    margin: 80px 20px -60px 0px;
     padding: 15px;
-    overflow-x: hidden;
-    overflow-x: scroll;
-    &::-webkit-scrollbar{
-      display: none;
-    
-    }
+   
     
     h4{
       padding-bottom: 10px;
     }
     .sinos{
-      position: absolute;
       text-align: left;
-      padding-top: 50px;
-      margin-top: 150px;
-      
+      height: 250px;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        width: 5px;  
+      }
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgb(207, 2, 2); 
+        border-radius: 10px;
+      }
     } 
   }
 }
