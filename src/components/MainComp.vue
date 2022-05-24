@@ -1,10 +1,13 @@
 <template>
 <main>
+
+  <!-- Card film -->
+
   <div class="box-title">
     <h2>Film</h2>
     <hr>
   </div>
- 
+  
   <div class="container ir-box d-flex flex-wrapping">
 
     <div  class="ir-cards flip-card" 
@@ -12,7 +15,10 @@
 
       <div class="flip-card-inner">    
         <div class="flip-card-front">
-          <img class="locandina" :src="`https://image.tmdb.org/t/p/w300/${film.poster_path}`">
+
+          <img class ="locandina" v-if="film.poster_path === null" src="../assets/img/no-poster.jpg" >
+
+          <img class="locandina" v-else :src="`https://image.tmdb.org/t/p/w300/${film.poster_path}`">
         </div>
 
         <div class="flip-card-back">
@@ -38,7 +44,8 @@
       </div>    
     </div>
   </div> 
-    <!-- Card Tv -->
+
+  <!-- Card Tv -->
 
   <div class="box-title">
     <h2> Serie TV</h2>
@@ -52,7 +59,10 @@
 
       <div class="flip-card-inner">    
         <div class="flip-card-front">
-          <img class="locandina" :src="`https://image.tmdb.org/t/p/w300/${serie.poster_path}`">
+
+           <img class ="locandina" v-if="serie.poster_path === null" src="../assets/img/no-poster.jpg" >
+
+          <img class="locandina" v-else :src="`https://image.tmdb.org/t/p/w300/${serie.poster_path}`">
         </div>
 
         <div class="flip-card-back">
@@ -122,6 +132,7 @@ export default {
       let stelleVuota = [...Array( 5 - grade ).keys()].map(i => i + 1);
       return stelleVuota;
     },
+    
   },
 };
 </script>
@@ -129,12 +140,13 @@ export default {
 <style lang="scss" scoped>
 
 .box-title{
-    margin: 30px 0px 30px 0px;
+    margin: 30px 0px 0px 0px;
 
     h2{
       text-align: center;
       color: white;
-      padding: 50px;
+      padding: 20px;
+      margin-top: 80px;
     }
     hr{
       color: white;
@@ -143,6 +155,7 @@ export default {
 
 .ir-box{
   flex-wrap: wrap;
+  // overflow-y:hidden ;
   justify-content: center;
   
   .flip-card{
@@ -164,7 +177,7 @@ export default {
       text-align: center;
       transition: transform 0.6s;
       transform-style: preserve-3d;
-      background-color: rgb(29, 51, 70);
+      background-color: rgb(31, 31, 31);
       
       &:hover{
         transform: rotateY(180deg);
@@ -186,11 +199,11 @@ export default {
   }
   .ir-cards{
     display: flex;
-    flex-wrap: wrap;
     text-align: center;
     margin: 80px 20px -60px 0px;
     padding: 15px;
     color: white;
+    
      
     h4{
       padding: 10px;
