@@ -157,7 +157,6 @@ export default {
 
 .ir-box{
   flex-wrap: wrap;
-  // overflow-y:hidden ;
   justify-content: center;
   
   .flip-card{
