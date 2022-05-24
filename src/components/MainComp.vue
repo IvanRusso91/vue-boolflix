@@ -4,8 +4,8 @@
   <!-- Card film -->
 
   <div class="box-title">
-    <h2>Film</h2>
-    <hr>
+    <h1 v-if="films.length > 0 ">{{titoloCards}}</h1>
+    <hr v-if="films.length > 0 ">
   </div>
   
   <div class="container ir-box d-flex flex-wrapping">
@@ -48,8 +48,8 @@
   <!-- Card Tv -->
 
   <div class="box-title">
-    <h2> Serie TV</h2>
-    <hr>
+    <h1 v-if="tv.length > 0 ">{{serieCards}}</h1>
+    <hr v-if="tv.length > 0 ">
   </div>
 
   <div class="container ir-box d-flex flex-wrapping">
@@ -99,6 +99,8 @@ export default {
   props:{
     films: Array,
     tv: Array,
+    titoloCards: String,
+    serieCards: String,
   },
 
   methods:{
@@ -142,11 +144,11 @@ export default {
 .box-title{
     margin: 30px 0px 0px 0px;
 
-    h2{
-      text-align: center;
+    h1{
       color: white;
       padding: 20px;
       margin-top: 80px;
+      margin-left: 20px;
     }
     hr{
       color: white;

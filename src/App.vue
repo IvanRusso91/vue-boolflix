@@ -3,8 +3,9 @@
 
     <HeaderComp @movieSoarch = "selectMovie"/>
   
-    <MainComp :films ="films" :tv = "tv" />
-
+    
+    <MainComp :films ="movie" :tv = "tv" titoloCards='Film' serieCards="Serie Tv" />
+    
   </div>
 </template>
 
@@ -20,15 +21,14 @@ export default {
   },
    data(){
     return{
-      apiUrlMovie:'https://api.themoviedb.org/3/search/movie',
-      apiUrlTv:'https://api.themoviedb.org/3/search/tv',
+      apiUrl:'https://api.themoviedb.org/3/search/',
       tv: [],
-      films:[],
+      movie:[],
 
       apiParams:{
         api_key: '7c69e1dbf94c017daf99d092e85dc183',
         language: 'it_IT',
-        query: '',
+        query: 'matrix',
       }
       
     }
@@ -38,46 +38,39 @@ export default {
 
     // ----- film -----
 
-    getApiMovie(){
-      axios.get(this.apiUrlMovie,{
+    getApi(item = ''){
+      let endPoint = 'https://api.themoviedb.org/3/movie/popular';
+      if(item !== ''){
+        endPoint = this.apiUrl + item;
+      }else{
+        item = 'movie';
+      }
+      console.log(endPoint);
+      axios.get(endPoint,{
         params: this.apiParams
       })
       .then(res => {
+        this[item]= res.data.results;
         console.log(res.data);
-        this.films = res.data.results;
       })
       .catch(err =>{
         console.log(err);
       })
     },
+
     selectMovie(search){
       this.apiParams.query = search;
-      this.getApiMovie();
-      this.getApiTv()
+      this.getApi('movie');
+      this.getApi('tv');
       console.log(search);
     },
 
-    // ------ Serie Tv -------
-    
-    getApiTv(){
-      axios.get(this.apiUrlTv,{
-        params: this.apiParams
-      })
-      .then(res => {
-        console.log(res.data);
-        this.tv = res.data.results;
-      })
-      .catch(err =>{
-        console.log(err);
-      })
-    },
-
-
   },
-  mounted(){
-  
-  }
-}
+
+    mounted(){
+      this.getApi()     
+    },
+};
  
 </script>
 
