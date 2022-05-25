@@ -4,7 +4,7 @@
 
     <HeaderComp @movieSoarch = "selectMovie"/>
 
-     <div v-if="isLoading" class="load">
+      <div v-if="isLoading" class="load">
         <img src="./assets/img/load-boolflix.png">
       </div>
 
@@ -13,7 +13,9 @@
               :jumbo ="movie"
               :tv = "tv" 
               titoloCards='Film' 
-              serieCards="Serie Tv" />
+              serieCards="Serie Tv"
+              @movieSelect="movie"
+              @tvSelect="tv"/>
     
   </div>
 </template>
@@ -34,6 +36,7 @@ export default {
       tv: [],
       movie:[],
       isLoading: true,
+      
 
       apiParams:{
         api_key: '7c69e1dbf94c017daf99d092e85dc183',
@@ -114,8 +117,9 @@ export default {
     justify-content: center;
     margin-top: 250px;
     width: 100%;
-     animation: logo 2.2s linear;
-
+    animation: logo 2.2s linear;
+    
+    
     @keyframes logo {
 
       0%{
