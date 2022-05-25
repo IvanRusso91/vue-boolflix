@@ -8,6 +8,7 @@
         <div class="col left">
           <img src="../assets/img/boolflix.png" alt="">
         </div>
+        
 
         <div class="col right">
 
@@ -16,6 +17,10 @@
                   class="form-control" 
                   type="text" 
                   placeholder="Cerca..." >
+
+          <div class="utente">
+            <img src="../assets/img/avatar.png" alt="avatar">
+          </div>
         </div>
 
       </div>
@@ -58,6 +63,15 @@ export default {
     margin-right: 20px;
     input{
       width: 500px;  
+    }
+    .utente{
+      width: 50px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-left: 10px;
+      img{
+        width: 100%;
+      }
     }
   }
 }

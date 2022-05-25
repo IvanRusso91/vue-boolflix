@@ -2,13 +2,9 @@
 <main>
 
   <div class="container-fluid position-relative jumbo" >
-    <img :src="`https://image.tmdb.org/t/p/w500/${jumbo[counter].poster_path}`">
+    <img :src="`https://image.tmdb.org/t/p/w1280/${jumbo[counter].backdrop_path}`">
     <div class="text-jumbo">
-      <h4>{{jumbo[counter].original_title}}</h4>
-      <p class="sinos-jumbo">
-        <strong>Sinossi:</strong>
-        {{jumbo[counter].overview}}
-      </p>
+      <span>{{jumbo[counter].original_title}}</span>
     </div>
   </div>
 
@@ -165,30 +161,32 @@ export default {
     setInterval(() =>{
       this.next();
     }, 4000)
-    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 
 .jumbo{
-  margin-top: 100px;
-  height:700px;
+  width: 80%;
   display: flex;
   justify-content: center;
-  border-radius: 100%;
+  align-content: center;
+  height: 100vh;
+  margin-top: 50px;
   overflow: hidden;
+  border-radius: 150px;
+
+  overflow: hidden;
+
   .text-jumbo{
-    position: absolute;
+    position:absolute;
+    margin-top: 800px;
+    font-size: 4rem;
     color: rgb(255, 255, 255);
-    margin-top: 430px;
-    background-color: rgba(0,0,0,0.6);
     border-radius: 20px;
-    padding: 10px;
-    .sinos-jumbo{
-      width: 400px;
-      overflow-x: hidden;
-    }
+    overflow: hidden; 
+    
   }
 
 }
